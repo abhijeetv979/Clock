@@ -24,7 +24,7 @@ function Layout({ children }) {
   return (
     <div className="layout">
       <div className="add-area">
-        <ins class="adsbygoogle"
+        <ins className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client="ca-pub-6330093427541658"
           data-ad-slot="7585753696"
