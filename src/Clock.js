@@ -20,6 +20,21 @@ function Clock() {
         return `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
     };
 
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const seconds = time.getSeconds();
+
+    // Calculate rotations
+    const hourRotation = (hours % 12) * 30 + minutes * 0.5;
+    const minuteRotation = minutes * 6 + seconds * 0.1;
+    const secondRotation = seconds * 6;
+
+    // Debug logs
+    // console.log("Current Time:", time.toLocaleTimeString());
+    // console.log("Hour Rotation:", hourRotation);
+    // console.log("Minute Rotation:", minuteRotation);
+    // console.log("Second Rotation:", secondRotation);
+
     const renderAnalogClock = () => (
         <div className="analog-clock">
             {/* {[...Array(12)].map((_, index) => (
@@ -40,15 +55,15 @@ function Clock() {
             ))} */}
             <div
                 className="hour-hand"
-                style={{ transform: `rotate(${(time.getHours() % 12) * 30 + time.getMinutes() * 0.5}deg)` }}
+                style={{ transform: `rotate(${hourRotation + 270}deg)` }}
             />
             <div
                 className="minute-hand"
-                style={{ transform: `rotate(${time.getMinutes() * 6}deg)` }}
+                style={{ transform: `rotate(${minuteRotation + 270}deg)` }}
             />
             <div
                 className="second-hand"
-                style={{ transform: `rotate(${time.getSeconds() * 6}deg)` }}
+                style={{ transform: `rotate(${secondRotation + 270}deg)` }}
             />
             <div className="center-dot" />
         </div>

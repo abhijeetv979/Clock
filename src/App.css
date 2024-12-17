@@ -102,11 +102,11 @@
 .hour-hand {
   background-color: #2c3e50;
   height: 5px;
+  width: 41%;
 }
 
 .minute-hand {
   background-color: #2c3e50;
-  width: 41%;
 }
 
 .second-hand {
