@@ -164,6 +164,10 @@
   cursor: not-allowed;
 }
 
+.analog-clock.active {
+  background-color: pink;
+}
+
 /* Responsiveness */
 @media screen and (max-width: 768px) {
   .layout {
