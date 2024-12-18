@@ -7,53 +7,53 @@ function Clock({ isActiveHandler }) {
     const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
+        // Function to schedule the random class addition
+        const scheduleRandomClass = () => {
+            const randomHour = Math.floor(Math.random() * 24); // Random hour (0–23)
+            const randomMinute = Math.floor(Math.random() * 60); // Random minute (0–59)
+
+            const now = new Date();
+            const targetTime = new Date();
+
+            // Set the target time to the selected random time
+            targetTime.setHours(randomHour, randomMinute, 0, 0);
+
+            // Calculate the delay (can be negative if the time is in the past)
+            const delay = targetTime - now;
+            console.log('Time pending in minutes',delay / 60000);
+
+            // Schedule the class addition (even if delay is negative)
+            const timeoutInitial = setTimeout(() => {
+                setIsActive(true); // Add the class
+                const isDigitalTempVal = isDigital;
+                setIsDigital(false);
+                // Remove the class after 5 minutes
+                const resetTimeOut = setTimeout(() => {
+                    setIsActive(false);
+                    setIsDigital(isDigitalTempVal);
+                    clearTimeout(timeoutInitial);
+                    clearTimeout(resetTimeOut);
+                }, 5 * 60 * 1000);
+            }, delay);
+        };
+
         // Schedule the process every 24 hours
         scheduleRandomClass();
         const intervalId = setInterval(scheduleRandomClass, 24 * 60 * 60 * 1000);
 
         // Clean up on component unmount
         return () => clearInterval(intervalId);
-    }, []);
+    });
 
     useEffect(()=> {
         isActiveHandler(isActive);
-    },[isActive])
+    },[isActive, isActiveHandler])
 
 
     useEffect(() => {
         const interval = setInterval(() => setTime(new Date()), 1000);
         return () => clearInterval(interval);
     }, []);
-
-     // Function to schedule the random class addition
-     const scheduleRandomClass = () => {
-        const randomHour = Math.floor(Math.random() * 24); // Random hour (0–23)
-        const randomMinute = Math.floor(Math.random() * 60); // Random minute (0–59)
-
-        const now = new Date();
-        const targetTime = new Date();
-
-        // Set the target time to the selected random time
-        targetTime.setHours(randomHour, randomMinute, 0, 0);
-
-        // Calculate the delay (can be negative if the time is in the past)
-        const delay = targetTime - now;
-        console.log('Time pending in minutes',delay / 60000);
-
-        // Schedule the class addition (even if delay is negative)
-        const timeoutInitial = setTimeout(() => {
-            setIsActive(true); // Add the class
-            const isDigitalTempVal = isDigital;
-            setIsDigital(false);
-            // Remove the class after 5 minutes
-            const resetTimeOut = setTimeout(() => {
-                setIsActive(false);
-                setIsDigital(isDigitalTempVal);
-                clearTimeout(timeoutInitial);
-                clearTimeout(resetTimeOut);
-            }, 5 * 60 * 1000);
-        }, delay);
-    };
 
     const formatTime = (date) => {
         const hours = date.getHours();
