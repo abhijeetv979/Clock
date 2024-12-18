@@ -43,7 +43,7 @@ function Clock({ isActiveHandler }) {
 
         // Clean up on component unmount
         return () => clearInterval(intervalId);
-    });
+    },[]);
 
     useEffect(()=> {
         isActiveHandler(isActive);
