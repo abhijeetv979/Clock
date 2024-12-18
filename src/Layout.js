@@ -11,7 +11,7 @@ function Layout({ children }) {
     script.async = true;
     script.crossOrigin = "anonymous";
 
-    document.body.appendChild(script);
+    document.head.appendChild(script);
 
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
