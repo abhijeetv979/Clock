@@ -36,7 +36,7 @@ function Clock({ isActiveHandler }) {
                 }, 5 * 60 * 1000);
             }, delay);
         };
-
+ 
         // Schedule the process every 24 hours
         scheduleRandomClass();
         const intervalId = setInterval(scheduleRandomClass, 24 * 60 * 60 * 1000);
