@@ -31,7 +31,7 @@ function Clock({ isActiveHandler }) {
                     setIsActive(false);
                     clearTimeout(timeoutInitial);
                     clearTimeout(resetTimeOut);
-                }, 5 * 60 * 1000);
+                }, 1 * 60 * 1000);
             }, delay);
         };
  
