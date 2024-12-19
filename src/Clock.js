@@ -24,8 +24,9 @@ function Clock({ isActiveHandler }) {
 
             // Schedule the class addition (even if delay is negative)
             const timeoutInitial = setTimeout(() => {
-                setIsActive(true); // Add the class
-                setIsDigital(false);
+                // setIsActive(true); // Add the class
+                // setIsDigital(false);
+                setIsActive(false);
                 // Remove the class after 5 minutes
                 const resetTimeOut = setTimeout(() => {
                     setIsActive(false);
